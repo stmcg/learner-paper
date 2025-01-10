@@ -40,13 +40,13 @@ The package version numbers listed above were used in the analyses in the manusc
 
 ##### Correlated Noise Scenarios
 
-* Files ending with ``-cor`` (e.g., ``main-same-cor.R``): Runs simulation scenarios with correlation of 0.1
+* Files ending with ``-cor`` (e.g., ``runsim-same-cor.R``): Runs simulation scenarios with correlation of 0.1
 * Files ending with ``-cor2``: Runs simulation scenarios with correlation of 0.25
 * Files ending with ``-cor3``: Runs simulation scenarios with correlation of 0.5
 
 ##### Correlated Noise + External Dataset Scenarios
 
-* Files ending with ``-cor-ext`` (e.g., ``main-same-cor-ext.R``): Runs simulation scenarios with an external dataset
+* Files ending with ``-cor-ext`` (e.g., ``runsim-same-cor-ext.R``): Runs simulation scenarios with an external dataset
 
 The `results` folder contains the output from running these simulations. Note that these files typically require between 8 to 30 hours to run when parallelized across 10 CPU cores.
 
