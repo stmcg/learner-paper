@@ -1,6 +1,6 @@
 rm(list = ls())
 source('helper.R')
-source('helper-cor-ext.R')
+source('helper-ext.R')
 
 # Simulation scenarios with same latent spaces
 n_lambdas <- 5
