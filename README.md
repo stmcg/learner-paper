@@ -5,11 +5,11 @@ https://doi.org/10.48550/arXiv.2412.20605) by Sean McGrath, Cenhao Zhu, Min Guo,
 
 ---
 
-## Simulations
+## Simulation Study
 
-The folder `Simulations` contains the code for the simulation study. Below is a description of the contents of this folder.
+The folder `simulations` contains the code for the simulation study. Below is a description of the contents of this folder.
 
-### Pre-requisites
+### Prerequisites
 
 The code requires the following R packages to be installed: 
 
@@ -23,7 +23,7 @@ The code requires the following R packages to be installed:
 
 The package version numbers listed above were used in the analyses in the manuscript.
 
-### File structure
+### File Structure
 
 #### 1. Helper Files
 
@@ -34,9 +34,9 @@ The package version numbers listed above were used in the analyses in the manusc
 
 ##### Independent Noise Scenarios
 
-* ``main-same.R``: Runs simulation scenarios with high similarity in the latent spaces
-* ``main-dif-moderate.R``: Runs simulation scenarios with moderate similarity in the latent spaces
-* ``main-dif_verylow.R``: Runs simulation scenarios with low similarity in the latent spaces
+* ``runsim-same.R``: Runs simulation scenarios with high similarity in the latent spaces
+* ``runsim-dif-moderate.R``: Runs simulation scenarios with moderate similarity in the latent spaces
+* ``runsim-dif_verylow.R``: Runs simulation scenarios with low similarity in the latent spaces
 
 ##### Correlated Noise Scenarios
 
@@ -50,7 +50,7 @@ The package version numbers listed above were used in the analyses in the manusc
 
 The `results` folder contains the output from running these simulations. Note that these files typically require between 8 to 30 hours to run when parallelized across 10 CPU cores.
 
-#### 3. Analyzing results
+#### 3. Analyzing Results
 
 * ``analyze_results.R``: Creates the figures summarizing the simulation results
 
@@ -59,9 +59,9 @@ The `results` folder contains the output from running these simulations. Note th
 
 ## Data Application
 
-The folder `Application` contains the code for the simulation study. Below is a description of the contents of this folder.
+The folder `application` contains the code for the simulation study. Below is a description of the contents of this folder.
 
-### Pre-requisites
+### Prerequisites
 
 The code requires the following R packages to be installed:
 
