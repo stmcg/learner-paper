@@ -87,7 +87,7 @@ The package version numbers listed above were used in the analyses in the manusc
 
 - `key.RData`: Contains a mapping of the column names of `Y_0` and `Y_1` to phenotype names and ICD-10 codes.  
 - `ScreeNOT.R`: Applies ScreeNOT to `Y_0` and `Y_1`.  
-- `analyze_latent_spaces.R`: Performs analyses of the latent spaces based on the source-only, target-only, LEARNER, and D-LEARNER estimates. The analyses based on the LEARNER and D-LEARNER estimates require running the analyses in the subfolder `apply-learner-dlearner`.
+- `analyze_latent_spaces.R`: Performs analyses of the latent spaces based on the source-only, target-only, LEARNER, and D-LEARNER estimates. The analyses based on the LEARNER and D-LEARNER estimates require running the analyses in the subfolder `apply_learner_dlearner`.
 
 #### Subfolder: `data_processing`
 
