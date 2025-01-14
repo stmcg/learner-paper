@@ -100,7 +100,7 @@ The folder contains the code for the data processing. The source data can be dow
 
 Note that step 1 requires approximately one week to run.
 
-#### Subfolder: `apply-learner-dlearner`
+#### Subfolder: `apply_learner_dlearner`
 
 This folder corresponds to the application of LEARNER and D-LEARNER in Section 4.2 of the manuscript.
 
