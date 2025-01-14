@@ -107,7 +107,7 @@ This folder corresponds to the application of LEARNER and D-LEARNER in Section 4
 - `dlearner.R`: Applies D-LEARNER. Results are saved in `DLEARNER-estimate-BBJ.RData`.  
 - `find-lambda.R`: Selects hyperparameters for LEARNER by cross-validation. Results are saved in `lambda_small.RData`.  
 - `learner.R`: Applies LEARNER with the selected hyperparameters. Results are saved in `learner.RData`.  
-- `analyze-results.R`: Plots the results of the cross-validation analyses and plots the convergence of LEARNER.  
+- `analyze-results.R`: Plots the results of the hyperparameter selection analyses and plots the convergence of LEARNER.  
 
 #### Subfolder: `cross-validation`
 
