@@ -83,13 +83,41 @@ The package version numbers listed above were used in the analyses in the manusc
 
 ### File Structure
 
-#### Data Processing
+#### Main Folder
 
-The folder `data_processing` contains the code for the data processing. The source data can be downloaded from the [NBDC Human Database](https://humandbs.dbcls.jp/en/hum0197-v3-220). After downloading the source data, the data processing steps should be run in the following order: 
+- `key.RData`: Contains a mapping of the column names of `Y_0` and `Y_1` to phenotype names and ICD-10 codes.  
+- `ScreeNOT.R`: Applies ScreeNOT to `Y_0` and `Y_1`.  
+- `analyze_latent_spaces.R`: Performs analyses of the latent spaces based on the source-only, target-only, LEARNER, and D-LEARNER estimates. The analyses based on the LEARNER and D-LEARNER estimates require running the analyses in the subfolder `apply-learner-dlearner`.
+
+#### Subfolder: `data_processing`
+
+The folder contains the code for the data processing. The source data can be downloaded from the [NBDC Human Database](https://humandbs.dbcls.jp/en/hum0197-v3-220). After downloading the source data, the data processing steps should be run in the following order: 
 
 1. `matrix_generation.R`: Performs variant screening and other data processing steps to help construct the matrices `Y_0` and `Y_1`.
 2. `eur_filter.py` and `filter_new_eur.py`: Computes z-scores from the beta coefficients and standard errors in the European population based on the output of `matrix_generation.R`.
 3.  `bbj_filter.py` and `filter_new_bbj.py`: Computes z-scores from the beta coefficients and standard errors in the BioBank Japan population based on the output of `matrix_generation.R`.
 4.  `create_analytic_datasets.R`: Performs final data processing tasks (e.g., row and column naming and re-ordering) to create the analytic data sets `Y_0` and `Y_1`.
 
-Note that step 1 is highly computationally intensive and requires approximately a week of run.
+Note that step 1 requires approximately one week to run.
+
+#### Subfolder: `apply-learner-dlearner`
+
+This folder corresponds to the application of LEARNER and D-LEARNER in Section 4.2 of the manuscript.
+
+- `dlearner.R`: Applies D-LEARNER. Results are saved in `DLEARNER-estimate-BBJ.RData`.  
+- `find-lambda.R`: Selects hyperparameters for LEARNER by cross-validation. Results are saved in `lambda_small.RData`.  
+- `learner.R`: Applies LEARNER with the selected hyperparameters. Results are saved in `learner.RData`.  
+- `analyze-results.R`: Plots the results of the cross-validation analyses and plots the convergence of LEARNER.  
+
+#### Subfolder: `cross-validation`
+
+This folder corresponds to the cross-validation analyses in Section 4.3 of the manuscript.
+
+- `dlearner-svd.R`: Applies D-LEARNER and the target-only SVD method. D-LEARNER results are saved in `dlearner_setX.RData` and target-only SVD results are saved in `hard_setX.RData` for training set `X` (`X=1,2,3,4,5`).
+- `find-lambda-helper.R`: Helper file for selecting hyperparameters for LEARNER.  
+- `find-lambda-setX.R`: Selects hyperparameters for LEARNER in training set `X` (`X=1,2,3,4,5`). Results are saved in `lambda_small_setX.RData`.  
+- `learner.R`: Applies LEARNER with the selected hyperparameters in each test dataset. Results are saved in `learner_setX.RData` for training set `X` (`X=1,2,3,4,5`).  
+- `heldout-mse.R`: Computes the mean squared error values in the test datasets.  
+
+The selection of hyperparameters for LEARNER took between 3 and 4 hours to run when parallelized across 13 CPU cores. The application of LEARNER took up to 3 hours to run on a single CPU core.
+
