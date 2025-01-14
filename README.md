@@ -92,14 +92,13 @@ The package version numbers listed above were used in the analyses in the manusc
 
 #### Subfolder: `data_processing`
 
-The folder contains the code for the data processing. The source data can be downloaded from the [NBDC Human Database](https://humandbs.dbcls.jp/en/hum0197-v3-220). After downloading the source data, the data processing steps should be run in the following order: 
+The folder contains the code for the data processing. The source data can be downloaded from the [NBDC Human Database](https://humandbs.dbcls.jp/en/hum0197-v3-220) and [IGSR: The International Genome Sample Resource](https://www.internationalgenome.org/data-portal/sample). After downloading the source data, the data processing steps should be run in the following order: 
 
 1. `matrix_generation.R`: Performs variant screening and other data processing steps to help construct the matrices `Y_0` and `Y_1`.
 2. `eur_filter.py` and `filter_new_eur.py`: Computes z-scores from the beta coefficients and standard errors in the European population based on the output of `matrix_generation.R`.
 3.  `bbj_filter.py` and `filter_new_bbj.py`: Computes z-scores from the beta coefficients and standard errors in the BioBank Japan population based on the output of `matrix_generation.R`.
 4.  `create_analytic_datasets.R`: Performs final data processing tasks (e.g., row and column naming and re-ordering) to create the analytic data sets `Y_0` and `Y_1`.
 
-Note that step 1 requires approximately one week to run.
 
 #### Subfolder: `apply_learner_dlearner`
 
