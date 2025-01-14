@@ -16,7 +16,7 @@ The code requires the following R packages to be installed:
 - **doParallel** (version 1.0.17)
 - **doRNG** (version 1.8.6)
 - **foreach** (version 1.5.2)
-- **learner** (version 0.1.0)
+- **learner** (version 0.2.0)
 - **MASS** (version 7.3-60.2)
 - **ScreeNOT** (version 0.1.0)
 - **RColorBrewer** (version 1.1-3)
@@ -63,12 +63,17 @@ The folder `application` contains the code for the simulation study. Below is a 
 
 ### Prerequisites
 
-The code requires the following R packages to be installed:
+The code for the data processing requires the following R packages to be installed: 
+
+- **data.table** (version 1.16.0)  
+- **genio** (version 1.1.2)  
+
+The code for the data analysis requires the following R packages to be installed:
 
 - **doParallel** (version 1.0.17)  
 - **foreach** (version 1.5.2)  
 - **lattice** (version 0.22-6)  
-- **learner** (version 0.1.0)  
+- **learner** (version 0.2.0)  
 - **MASS** (version 7.3-60.2)  
 - **RColorBrewer** (version 1.1-3)  
 - **ScreeNOT** (version 0.1.0)  
@@ -78,3 +83,13 @@ The package version numbers listed above were used in the analyses in the manusc
 
 ### File Structure
 
+#### Data Processing
+
+The folder `data_processing` contains the code for the data processing. The source data can be downloaded from the [NBDC Human Database](https://humandbs.dbcls.jp/en/hum0197-v3-220). After downloading the source data, the data processing steps should be run in the following order: 
+
+1. `matrix_generation.R`: Performs variant screening and other data processing steps to help construct the matrices `Y_0` and `Y_1`.
+2. `eur_filter.py` and `filter_new_eur.py`: Computes z-scores from the beta coefficients and standard errors in the European population based on the output of `matrix_generation.R`.
+3.  `bbj_filter.py` and `filter_new_bbj.py`: Computes z-scores from the beta coefficients and standard errors in the BioBank Japan population based on the output of `matrix_generation.R`.
+4.  `create_analytic_datasets.R`: Performs final data processing tasks (e.g., row and column naming and re-ordering) to create the analytic data sets `Y_0` and `Y_1`.
+
+Note that step 1 is highly computationally intensive and requires approximately a week of run.
