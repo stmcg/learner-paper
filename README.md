@@ -65,8 +65,9 @@ The folder `application` contains the code for the simulation study. Below is a 
 
 The code for the data processing requires the following R packages to be installed: 
 
-- **data.table** (version 1.16.0)  
-- **genio** (version 1.1.2)  
+- **data.table**
+- **dplyr**
+- **genio**
 
 The code for the data analysis requires the following R packages to be installed:
 
