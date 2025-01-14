@@ -114,7 +114,7 @@ European_number <- European_info[,1]
 # 670 in total
 
 EUR_ids <- data.frame(FID = European_number, IID = European_number)
-write.table(EUR_ids, "/n/holyscratch01/duan_lab/ch_zhu/220_phenotype/reference/Ancestry_info/EUR_id.txt", quote=FALSE, row.names=FALSE, col.names=FALSE)
+write.table(EUR_ids, "220_phenotype/reference/Ancestry_info/EUR_id.txt", quote=FALSE, row.names=FALSE, col.names=FALSE)
 
 
 #####################
@@ -123,10 +123,10 @@ write.table(EUR_ids, "/n/holyscratch01/duan_lab/ch_zhu/220_phenotype/reference/A
 
 # Construct files that only contain Eastern Asian subjects
 # Define the path to the plink executable
-plink_path <- "/n/home01/czhu/bin/plink"
+plink_path <- "bin/plink"
 # Define the directory path for input and output files
-base_path <- "/220_phenotype/reference/bfile"
-keep_file <- "/220_phenotype/reference/Ancestry_info/EAS_id.txt"
+base_path <- "220_phenotype/reference/bfile"
+keep_file <- "220_phenotype/reference/Ancestry_info/EAS_id.txt"
 
 # Loop
 for (chr_num in 1:22){
@@ -140,10 +140,10 @@ for (chr_num in 1:22){
 
 # Construct files that only contain European subjects
 # Define the path to the plink executable
-plink_path <- "/n/home01/czhu/bin/plink"
+plink_path <- "bin/plink"
 # Define the directory path for input and output files
-base_path <- "/220_phenotype/reference/bfile"
-keep_file_EUR <- "/220_phenotype/reference/Ancestry_info/EUR_id.txt"
+base_path <- "reference/bfile"
+keep_file_EUR <- "220_phenotype/reference/Ancestry_info/EUR_id.txt"
 
 # Loop
 for (chr_num in 1:22){
@@ -203,8 +203,8 @@ for (chr_num in 1:22){
   print(count)
 }
 
-write.table(prop_snps, "/220_phenotype/reference/bfile/EAS_low_maf_rate.txt", quote=FALSE, col.names=FALSE, row.names=FALSE, sep="\t")
-saveRDS(high_maf_snps, "/220_phenotype/reference/bfile/EAS_high_maf_list.rds")
+write.table(prop_snps, "220_phenotype/reference/bfile/EAS_low_maf_rate.txt", quote=FALSE, col.names=FALSE, row.names=FALSE, sep="\t")
+saveRDS(high_maf_snps, "220_phenotype/reference/bfile/EAS_high_maf_list.rds")
 
 
 EUR_count_low_maf_snps <- vector("list", 22)
@@ -231,8 +231,8 @@ for (chr_num in 1:22){
   print(count)
 }
 
-write.table(EUR_prop_snps, "/220_phenotype/reference/bfile/EUR_low_maf_rate.txt", quote=FALSE, col.names=FALSE, row.names=FALSE, sep="\t")
-saveRDS(EUR_high_maf_snps, "/220_phenotype/reference/bfile/EUR_high_maf_list.rds")
+write.table(EUR_prop_snps, "220_phenotype/reference/bfile/EUR_low_maf_rate.txt", quote=FALSE, col.names=FALSE, row.names=FALSE, sep="\t")
+saveRDS(EUR_high_maf_snps, "220_phenotype/reference/bfile/EUR_high_maf_list.rds")
 
 
 ##################
@@ -241,14 +241,14 @@ saveRDS(EUR_high_maf_snps, "/220_phenotype/reference/bfile/EUR_high_maf_list.rds
 
 # Extracted snps of EUR dataset
 EUR_beta <- readRDS("220_phenotype_download/processed/SNP_auto_beta_e3.RDS")
-EUR_POS <- readRDS("/220_phenotype/EUR_auto_screen_POS_e3.RDS")
+EUR_POS <- readRDS("220_phenotype/EUR_auto_screen_POS_e3.RDS")
 EUR_POS_all <- unlist(EUR_POS)
 EUR_POS_unique <- unique(EUR_POS_all)
 
 
 # Extracted snps of UKB dataset
 UKB_beta <- readRDS("220_phenotype_download/processed/UKB_auto_beta_e3.RDS")
-UKB_POS <- readRDS("/220_phenotype/UKB_auto_screen_POS_e3.RDS")
+UKB_POS <- readRDS("220_phenotype/UKB_auto_screen_POS_e3.RDS")
 UKB_POS_all <- unlist(UKB_POS)
 UKB_POS_unique <- unique(UKB_POS_all)
 
@@ -258,17 +258,17 @@ EUR_meta_POS_unique <- unique(EUR_meta_POS_unique)
 
 # Extracted snps of BBJ dataset
 BBJ_beta <- readRDS("220_phenotype_download/processed/BBJ_auto_beta_e3.RDS")
-BBJ_POS <- readRDS("/220_phenotype/BBJ_auto_screen_POS_e3.RDS")
+BBJ_POS <- readRDS("220_phenotype/BBJ_auto_screen_POS_e3.RDS")
 BBJ_POS_all <- unlist(BBJ_POS)
 BBJ_POS_unique <- unique(BBJ_POS_all)
 
 sig_POS_all <- intersect(EUR_meta_POS_unique, BBJ_POS_unique)
 
 
-EAS_rate <- read.csv("/220_phenotype/reference/bfile/EAS_low_maf_rate.txt", sep="\t", header=F)
-EUR_rate <- read.csv("/220_phenotype/reference/bfile/EUR_low_maf_rate.txt", sep="\t", header=F)
-EUR_high_snps <- readRDS("/220_phenotype/reference/bfile/EUR_high_maf_list.rds")
-EAS_high_snps <- readRDS("/220_phenotype/reference/bfile/EAS_high_maf_list.rds")
+EAS_rate <- read.csv("220_phenotype/reference/bfile/EAS_low_maf_rate.txt", sep="\t", header=F)
+EUR_rate <- read.csv("220_phenotype/reference/bfile/EUR_low_maf_rate.txt", sep="\t", header=F)
+EUR_high_snps <- readRDS("220_phenotype/reference/bfile/EUR_high_maf_list.rds")
+EAS_high_snps <- readRDS("220_phenotype/reference/bfile/EAS_high_maf_list.rds")
 
 # 11053424 SNPs in EUR population
 EUR_high_snps_unlist <- unlist(EUR_high_snps)
@@ -276,10 +276,10 @@ EUR_high_snps_unlist <- unlist(EUR_high_snps)
 EAS_high_snps_unlist <- unlist(EAS_high_snps)
 # 7348804 snps that pass both the thresholds
 high_snps_list <- intersect(EUR_high_snps_unlist, EAS_high_snps_unlist)
-saveRDS(high_snps_list,"/220_phenotype/reference/bfile/high_maf_all_list.rds")
+saveRDS(high_snps_list,"220_phenotype/reference/bfile/high_maf_all_list.rds")
 
 sig_POS_avail_all <- intersect(high_snps_list, sig_POS_all)
-saveRDS(sig_POS_avail_all," /220_phenotype/reference/bfile/avail_sig_POS.rds")
+saveRDS(sig_POS_avail_all,"220_phenotype/reference/bfile/avail_sig_POS.rds")
 
 
 
@@ -292,7 +292,7 @@ saveRDS(sig_POS_avail_all," /220_phenotype/reference/bfile/avail_sig_POS.rds")
 library(data.table)
 library(genio)
 
-sig_POS_avail_all <- readRDS(file="/220_phenotype/reference/bfile/avail_sig_POS.rds")
+sig_POS_avail_all <- readRDS(file="220_phenotype/reference/bfile/avail_sig_POS.rds")
 
 vec.POS <- c()
 vec.intersect.POS <- c()
@@ -304,7 +304,7 @@ for (i in 1:22) {
   SNP_auto_char_list <- sig_POS_avail_all[grepl(paste0("^", i, ":"), sig_POS_avail_all)]
   
   # Read the BIM file into a data.table
-  bim_data <- fread(paste0("/220_phenotype/reference/bfile/chr", i, ".bim"), select = c(4))
+  bim_data <- fread(paste0("220_phenotype/reference/bfile/chr", i, ".bim"), select = c(4))
   bim_data <- as.vector(bim_data$V4)
   
   # Extract positions from the filtered SNPs
@@ -319,13 +319,13 @@ for (i in 1:22) {
   SNP_char_POS_intersect_complete <- paste0(i, ":", SNP_char_POS_intersect)
   
   # Write to file
-  write.table(SNP_char_POS_intersect_complete, paste0("/220_phenotype/reference/filtered/22_chromosomes/SNP_new_char",i, ".txt"), row.names = FALSE, col.names = FALSE, quote = FALSE)
+  write.table(SNP_char_POS_intersect_complete, paste0("220_phenotype/reference/filtered/22_chromosomes/SNP_new_char",i, ".txt"), row.names = FALSE, col.names = FALSE, quote = FALSE)
   
   # Make bfile that only contains the selected SNPs
-  system(paste0("/n/home01/czhu/bin/plink --bfile /220_phenotype/reference/bfile/chr", i, " --extract /220_phenotype/reference/filtered/22_chromosomes/SNP_new_char", i, ".txt --make-bed --out /220_phenotype/reference/bfile/chr", i, "_1000_geno_filtered_new"))
+  system(paste0("bin/plink --bfile 220_phenotype/reference/bfile/chr", i, " --extract 220_phenotype/reference/filtered/22_chromosomes/SNP_new_char", i, ".txt --make-bed --out 220_phenotype/reference/bfile/chr", i, "_1000_geno_filtered_new"))
   
   # Run PLINK command for pruning
-  system(paste0("/n/home01/czhu/bin/plink --bfile /220_phenotype/reference/bfile/chr", i, "_1000_geno_filtered_new --indep-pairwise 50 5 0.1 --out /220_phenotype/reference/filtered/22_chromosomes/chr", i, "_1000_geno_pruned_new"))
+  system(paste0("bin/plink --bfile 220_phenotype/reference/bfile/chr", i, "_1000_geno_filtered_new --indep-pairwise 50 5 0.1 --out 220_phenotype/reference/filtered/22_chromosomes/chr", i, "_1000_geno_pruned_new"))
 }
 
 
@@ -334,7 +334,7 @@ pruned_snps_all <- list()
 for (i in 1:22)
 {
   # Read the pruned snps
-  pruned_snps <- read.table(paste0("/220_phenotype/reference/filtered/22_chromosomes/chr", i, "_1000_geno_pruned_new.prune.in"))
+  pruned_snps <- read.table(paste0("220_phenotype/reference/filtered/22_chromosomes/chr", i, "_1000_geno_pruned_new.prune.in"))
   pruned_snps <- as.vector(pruned_snps$V1)
   pruned_snps_all[[i]] <- pruned_snps
 }
@@ -345,9 +345,9 @@ vector_lengths <- lengths(pruned_snps_all)
 total_elements <- sum(vector_lengths)
 
 pruned_snps_unlist <- unlist(pruned_snps_all)
-write.csv(pruned_snps_unlist, quote=FALSE, row.names=FALSE, file="/220_phenotype/reference/filtered/22_chromosomes/new_pruned_snps_all.txt")
+write.csv(pruned_snps_unlist, quote=FALSE, row.names=FALSE, file="220_phenotype/reference/filtered/22_chromosomes/new_pruned_snps_all.txt")
 
-pruned_snps_unlist <-  read.csv("/220_phenotype/reference/filtered/22_chromosomes/new_pruned_snps_all.txt")
+pruned_snps_unlist <-  read.csv("220_phenotype/reference/filtered/22_chromosomes/new_pruned_snps_all.txt")
 pruned_snps_unlist <- as.vector(pruned_snps_unlist$x)
 
 
@@ -357,10 +357,10 @@ maf_EAS <- vector("list", 22)
 count = 0
 
 # Define the path to the plink executable
-plink_path <- "/n/home01/czhu/bin/plink"
+plink_path <- "bin/plink"
 
 # Define the directory path for input and output files
-base_path <- "/220_phenotype/reference/bfile"
+base_path <- "220_phenotype/reference/bfile"
 
 for (chr_num in 1:22){
   file_path <- paste0(base_path, "/EAS_chr", chr_num, ".frq")
@@ -376,16 +376,16 @@ for (chr_num in 1:22){
 }
 
 maf_EAS_unlist <- do.call(rbind, maf_EAS)
-saveRDS(maf_EAS_unlist, "/220_phenotype/reference/Ancestry_info/EAS_filtered_maf.rds")
+saveRDS(maf_EAS_unlist, "220_phenotype/reference/Ancestry_info/EAS_filtered_maf.rds")
 
 maf_EUR <- vector("list", 22)
 count = 0
 
 # Define the path to the plink executable
-plink_path <- "/n/home01/czhu/bin/plink"
+plink_path <- "bin/plink"
 
 # Define the directory path for input and output files
-base_path <- "/220_phenotype/reference/bfile"
+base_path <- "220_phenotype/reference/bfile"
 
 for (chr_num in 1:22){
   file_path <- paste0(base_path, "/EUR_chr", chr_num, ".frq")
@@ -401,7 +401,7 @@ for (chr_num in 1:22){
 }
 
 maf_EUR_unlist <- do.call(rbind, maf_EUR)
-saveRDS(maf_EUR_unlist, "/220_phenotype/reference/Ancestry_info/EUR_filtered_maf.rds")
+saveRDS(maf_EUR_unlist, "220_phenotype/reference/Ancestry_info/EUR_filtered_maf.rds")
 
 
 # 146 phenotypes
