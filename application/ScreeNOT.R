@@ -3,8 +3,8 @@ rm(list = ls())
 library('ScreeNOT')
 
 load('dat.RData')
-res_0 <- adaptiveHardThresholding(Y = theta_hat_0, k = 30) # rank 6
-res_1 <- adaptiveHardThresholding(Y = theta_hat_1, k = 30) # rank 8
+res_0 <- adaptiveHardThresholding(Y = theta_hat_0, k = 40) # rank 3
+res_1 <- adaptiveHardThresholding(Y = theta_hat_1, k = 40) # rank 6
 
 svd_0 <- svd(theta_hat_0)
 svd_1 <- svd(theta_hat_1)

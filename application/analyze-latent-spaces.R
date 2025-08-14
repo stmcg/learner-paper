@@ -3,8 +3,8 @@
 ################################################################################
 rm(list = ls())
 load('dat.RData')
-load('Apply LEARNER and D-LEARNER/learner.RData')
-load('Apply LEARNER and D-LEARNER/DLEARNER-estimate-BBJ.RData')
+load('apply_learner_dlearner/learner.RData')
+load('apply_learner_dlearner/DLEARNER-estimate-BBJ.RData')
 load('key.RData')
 
 library('lattice')
@@ -267,8 +267,6 @@ table_row(svd0_chosen, 3)
 table_row(svd0_chosen, 4)
 table_row(svd0_chosen, 5)
 table_row(svd0_chosen, 6)
-table_row(svd0_chosen, 7)
-table_row(svd0_chosen, 8)
 
 table_row(svd1_chosen, 1)
 table_row(svd1_chosen, 2)
@@ -276,8 +274,6 @@ table_row(svd1_chosen, 3)
 table_row(svd1_chosen, 4)
 table_row(svd1_chosen, 5)
 table_row(svd1_chosen, 6)
-table_row(svd1_chosen, 7)
-table_row(svd1_chosen, 8)
 
 table_row(svd_learner, 1)
 table_row(svd_learner, 2)
@@ -285,8 +281,7 @@ table_row(svd_learner, 3)
 table_row(svd_learner, 4)
 table_row(svd_learner, 5)
 table_row(svd_learner, 6)
-table_row(svd_learner, 7)
-table_row(svd_learner, 8)
+
 
 table_row(svd_dlearner, 1)
 table_row(svd_dlearner, 2)
@@ -294,5 +289,61 @@ table_row(svd_dlearner, 3)
 table_row(svd_dlearner, 4)
 table_row(svd_dlearner, 5)
 table_row(svd_dlearner, 6)
-table_row(svd_dlearner, 7)
-table_row(svd_dlearner, 8)
+
+
+################################################################################
+## Listing top phenotypes of the latent components based on varimax rotation
+################################################################################
+
+mycol <- colnames(theta_hat_0)
+table_row_loadings <- function(loadings, ind){
+  abb <- mycol[order(loadings[, ind]^2, decreasing = T)[1:5]]
+  score <- round(sort(loadings[, ind]^2, decreasing = T)[1:5], 2)
+  res <- ""
+  for (i in 1:length(abb)){
+    res <- paste0(res, key[key$abb == abb[i], ]$Disease.name, 
+                  ' (', 
+                  score[i], 
+                  '), ')
+  }
+  return(res)
+}
+
+rot_learner <- varimax(svd_learner$v)
+rotated_loadings_learner <- rot_learner$loadings 
+table_row_loadings(rotated_loadings_learner, 1)
+table_row_loadings(rotated_loadings_learner, 2)
+table_row_loadings(rotated_loadings_learner, 3)
+table_row_loadings(rotated_loadings_learner, 4)
+table_row_loadings(rotated_loadings_learner, 5)
+table_row_loadings(rotated_loadings_learner, 6)
+
+rot_dlearner <- varimax(svd_dlearner$v)
+rotated_loadings_dlearner <- rot_dlearner$loadings 
+table_row_loadings(rotated_loadings_dlearner, 1)
+table_row_loadings(rotated_loadings_dlearner, 2)
+table_row_loadings(rotated_loadings_dlearner, 3)
+table_row_loadings(rotated_loadings_dlearner, 4)
+table_row_loadings(rotated_loadings_dlearner, 5)
+table_row_loadings(rotated_loadings_dlearner, 6)
+
+
+################################################################################
+## Listing top variants of the latent components
+################################################################################
+
+myrow <- rownames(theta_hat_0)
+table_row_variant <- function(dat, ind){
+  abb <- myrow[order(dat$u[, ind]^2, decreasing = T)[1:5]]
+  score <- round(sort(dat$u[, ind]^2, decreasing = T)[1:5], 2)
+  res <- ""
+  for (i in 1:length(abb)){
+    res <- paste0(res, abb[i], ' (', score[i], '), ')
+  }
+  return(res)
+}
+table_row_variant(svd0_chosen, 1)
+table_row_variant(svd1_chosen, 1)
+table_row_variant(svd_learner, 1)
+table_row_variant(svd_dlearner, 1)
+

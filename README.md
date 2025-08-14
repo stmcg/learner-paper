@@ -1,7 +1,7 @@
 # LEARNER: A Transfer Learning Method for Low-Rank Matrix Estimation
 
 This repository contains the code for the simulation study and data application in the manuscript ["LEARNER: A Transfer Learning Method for Low-Rank Matrix Estimation"](
-https://doi.org/10.48550/arXiv.2412.20605) by Sean McGrath, Cenhao Zhu, Min Guo, and Rui Duan.
+https://doi.org/10.48550/arXiv.2412.20605) by Sean McGrath, Cenhao Zhu, Ryan O'Dea, Min Guo, and Rui Duan.
 
 ---
 
@@ -16,7 +16,7 @@ The code requires the following R packages to be installed:
 - **doParallel** (version 1.0.17)
 - **doRNG** (version 1.8.6)
 - **foreach** (version 1.5.2)
-- **learner** (version 0.2.0)
+- **learner** (version 1.0.0)
 - **MASS** (version 7.3-60.2)
 - **ScreeNOT** (version 0.1.0)
 - **RColorBrewer** (version 1.1-3)
@@ -40,15 +40,13 @@ The package version numbers listed above were used in the analyses in the manusc
 
 ##### Correlated Noise Scenarios
 
-* Files ending with ``-cor`` (e.g., ``runsim-same-cor.R``): Runs simulation scenarios with correlation of 0.1
-* Files ending with ``-cor2``: Runs simulation scenarios with correlation of 0.25
-* Files ending with ``-cor3``: Runs simulation scenarios with correlation of 0.5
+* Files ending with ``-cor`` (e.g., ``runsim-same-cor.R``): Runs simulation scenarios with correlated errors
 
 ##### Correlated Noise + External Dataset Scenarios
 
 * Files ending with ``-cor-ext`` (e.g., ``runsim-same-cor-ext.R``): Runs simulation scenarios with an external dataset
 
-The `results` folder contains the output from running these simulations. Note that these files typically require between 8 to 30 hours to run when parallelized across 10 CPU cores.
+Note that these files required between 0.5 to 10 hours to run when parallelized across 10 CPU cores.
 
 #### 3. Analyzing Results
 
@@ -74,7 +72,7 @@ The code for the data analysis requires the following R packages to be installed
 - **doParallel** (version 1.0.17)  
 - **foreach** (version 1.5.2)  
 - **lattice** (version 0.22-6)  
-- **learner** (version 0.2.0)  
+- **learner** (version 1.0.0)  
 - **MASS** (version 7.3-60.2)  
 - **RColorBrewer** (version 1.1-3)  
 - **ScreeNOT** (version 0.1.0)  
@@ -119,5 +117,5 @@ This folder corresponds to the cross-validation analyses in Section 4.3 of the m
 - `learner.R`: Applies LEARNER with the selected hyperparameters in each test dataset. Results are saved in `learner_setX.RData` for training set `X` (`X=1,2,3,4,5`).  
 - `heldout-mse.R`: Computes the mean squared error values in the test datasets.  
 
-The selection of hyperparameters for LEARNER took between 3 and 4 hours to run when parallelized across 13 CPU cores. The application of LEARNER took up to 3 hours to run on a single CPU core.
+The selection of hyperparameters for LEARNER took up to an hour to run (on a single CPU core). The application of LEARNER took up less than a minute to run.
 

@@ -5,14 +5,14 @@ load('../dat.RData')
 library('lattice')
 library('RColorBrewer')
 
-n_lambdas <- 5
-log_lambdas1 <- round(seq(from = 0, to = 4, length.out = n_lambdas), 2)
-log_lambdas2 <- round(seq(from = -2.5, to = 2.5, length.out = n_lambdas), 2)
+n_lambdas <- 10
+log_lambdas1 <- round(seq(from = 1, to = 4, length.out = n_lambdas), 2)
+log_lambdas2 <- round(seq(from = -2, to = 1, length.out = n_lambdas), 2)
 min_ind <- which(out_small_lambda$res == min(out_small_lambda$res, na.rm = TRUE), arr.ind = TRUE)
 
 coul <- rev(colorRampPalette(brewer.pal(9, "Reds"))(100))
 
-pdf('Lambdas-4fold.pdf', width = 7, height = 6)
+pdf('../Lambdas-4fold.pdf', width = 7, height = 6)
 levelplot(out_small_lambda$res / (p * q), aspect = 'fill',
           col.regions = coul, 
           xlab = expression(log(lambda[1])), ylab = expression(log(lambda[2])), 
@@ -29,7 +29,7 @@ dev.off()
 rm(list = ls())
 load('learner.RData')
 
-pdf('ObjFunc.pdf', width = 6, height = 4)
+pdf('../ObjFunc.pdf', width = 6, height = 4)
 par(mar = c(5.1, 4.6, 4.1, 2.1))
 plot(fit$objective_values[1:100] / 100000, type = 'l', col = 'blue', lwd = 2, 
      xlab = 'Iteration number', ylab = expression(paste("Objective function (10"^6, ")")))
@@ -55,7 +55,7 @@ myind <- sort(sample.int(p, 1000, replace = F))
 temp <- t(fit$learner_estimate[myind,])
 colnames(temp) <- rownames(temp) <- NULL
 min_val <- -1.25; max_val <- 1.25
-pdf('Thetahat-LEARNER.pdf', width = 8, height = 8)
+pdf('../Thetahat-LEARNER.pdf', width = 8, height = 8)
 levelplot(temp, aspect="fill", 
           xlab = list(label = 'Phenotype Index', cex = cex.label),
           ylab = list(label = 'Variant Index', cex = cex.label),  
@@ -67,7 +67,7 @@ dev.off()
 temp <- t(theta_hat_0_dlearner[myind,])
 colnames(temp) <- rownames(temp) <- NULL
 min_val <- -0.2; max_val <- 0.2
-pdf('Thetahat-DLEARNER.pdf', width = 8, height = 8)
+pdf('../Thetahat-DLEARNER.pdf', width = 8, height = 8)
 levelplot(temp, aspect="fill", 
           xlab = list(label = 'Phenotype Index', cex = cex.label),
           ylab = list(label = 'Variant Index', cex = cex.label),  

@@ -42,9 +42,19 @@ theta_hat_0[is.na(theta_hat_0)] <- 0
 theta_hat_0 <- as.matrix(theta_hat_0)
 theta_hat_1 <- as.matrix(theta_hat_1) 
 
+# Removing variants in the major histocompatibility complex region
+identical(rownames(theta_hat_0), rownames(theta_hat_1))
+chr6 <- as.numeric(sub(":.*", "", rownames(theta_hat_0))) == 6
+pos <- as.numeric(sub(".*:", "", rownames(theta_hat_0)))
+pos_mhcr <- pos > 25000000 & pos < 35000000
+variants_to_keep <- !(chr6 & pos_mhcr)
+
+theta_hat_0 <- theta_hat_0[variants_to_keep, ]
+theta_hat_1 <- theta_hat_1[variants_to_keep, ]
+
 p <- nrow(theta_hat_0)
 q <- ncol(theta_hat_0)
-r_chosen <- 8
+r_chosen <- 6
 
 set.seed(1234)
 heldout_indices <- sample(1:(p * q), size = p * q, replace = FALSE)

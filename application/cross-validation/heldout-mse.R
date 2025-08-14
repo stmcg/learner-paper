@@ -40,27 +40,66 @@ true_set4 <- theta_hat_0[heldout_set[[4]]]
 true_set5 <- theta_hat_0[heldout_set[[5]]]
 
 ## Getting performance
-round(mean((svd1_set1 - true_set1)^2), 2)
-round(mean((hard_set1 - true_set1)^2), 2)
-round(mean((dlearner_set1 - true_set1)^2), 2)
-round(mean((learner_set1 - true_set1)^2), 2)
+round(mean((svd1_set1 - true_set1)^2), 3)
+round(quantile((svd1_set1 - true_set1)^2, probs = c(0.025, 0.975)), 3)
 
-round(mean((svd1_set2 - true_set2)^2), 2)
-round(mean((hard_set2 - true_set2)^2), 2)
-round(mean((dlearner_set2 - true_set2)^2), 2)
-round(mean((learner_set2 - true_set2)^2), 2)
+round(mean((hard_set1 - true_set1)^2), 3)
+round(quantile((hard_set1 - true_set1)^2, probs = c(0.025, 0.975)), 3)
 
-round(mean((svd1_set3 - true_set3)^2), 2)
-round(mean((hard_set3 - true_set3)^2), 2)
-round(mean((dlearner_set3 - true_set3)^2), 2)
-round(mean((learner_set3 - true_set3)^2), 2)
+round(mean((dlearner_set1 - true_set1)^2), 3)
+round(quantile((dlearner_set1 - true_set1)^2, probs = c(0.025, 0.975)), 3)
 
-round(mean((svd1_set4 - true_set4)^2), 2)
-round(mean((hard_set4 - true_set4)^2), 2)
-round(mean((dlearner_set4 - true_set4)^2), 2)
-round(mean((learner_set4 - true_set4)^2), 2)
+round(mean((learner_set1 - true_set1)^2), 3)
+round(quantile((learner_set1 - true_set1)^2, probs = c(0.025, 0.975)), 3)
 
-round(mean((svd1_set5 - true_set5)^2), 2)
-round(mean((hard_set5 - true_set5)^2), 2)
-round(mean((dlearner_set5 - true_set5)^2), 2)
-round(mean((learner_set5 - true_set5)^2), 2)
+
+round(mean((svd1_set2 - true_set2)^2), 3)
+round(quantile((svd1_set2 - true_set2)^2, probs = c(0.025, 0.975)), 3)
+
+round(mean((hard_set2 - true_set2)^2), 3)
+round(quantile((hard_set2 - true_set2)^2, probs = c(0.025, 0.975)), 3)
+
+round(mean((dlearner_set2 - true_set2)^2), 3)
+round(quantile((dlearner_set2 - true_set2)^2, probs = c(0.025, 0.975)), 3)
+
+round(mean((learner_set2 - true_set2)^2), 3)
+round(quantile((learner_set2 - true_set2)^2, probs = c(0.025, 0.975)), 3)
+
+
+round(mean((svd1_set3 - true_set3)^2), 3)
+round(quantile((svd1_set3 - true_set3)^2, probs = c(0.025, 0.975)), 3)
+
+round(mean((hard_set3 - true_set3)^2), 3)
+round(quantile((hard_set3 - true_set3)^2, probs = c(0.025, 0.975)), 3)
+
+round(mean((dlearner_set3 - true_set3)^2), 3)
+round(quantile((dlearner_set3 - true_set3)^2, probs = c(0.025, 0.975)), 3)
+
+round(mean((learner_set3 - true_set3)^2), 3)
+round(quantile((learner_set3 - true_set3)^2, probs = c(0.025, 0.975)), 3)
+
+
+round(mean((svd1_set4 - true_set4)^2), 3)
+round(quantile((svd1_set4 - true_set4)^2, probs = c(0.025, 0.975)), 3)
+
+round(mean((hard_set4 - true_set4)^2), 3)
+round(quantile((hard_set4 - true_set4)^2, probs = c(0.025, 0.975)), 3)
+
+round(mean((dlearner_set4 - true_set4)^2), 3)
+round(quantile((dlearner_set4 - true_set4)^2, probs = c(0.025, 0.975)), 3)
+
+round(mean((learner_set4 - true_set4)^2), 3)
+round(quantile((learner_set4 - true_set4)^2, probs = c(0.025, 0.975)), 3)
+
+
+round(mean((svd1_set5 - true_set5)^2), 3)
+round(quantile((svd1_set5 - true_set5)^2, probs = c(0.025, 0.975)), 3)
+
+round(mean((hard_set5 - true_set5)^2), 3)
+round(quantile((hard_set5 - true_set5)^2, probs = c(0.025, 0.975)), 3)
+
+round(mean((dlearner_set5 - true_set5)^2), 3)
+round(quantile((dlearner_set5 - true_set5)^2, probs = c(0.025, 0.975)), 3)
+
+round(mean((learner_set5 - true_set5)^2), 3)
+round(quantile((learner_set5 - true_set5)^2, probs = c(0.025, 0.975)), 3)

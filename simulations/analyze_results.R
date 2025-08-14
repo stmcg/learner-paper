@@ -37,7 +37,7 @@ load('simres-dif-moderate.RData')
 load('simres-dif-verylow.RData')
 var_ratio <- var_0_all / var_1_all
 
-pdf(paste0('Sim-Res-Independent.pdf'), height = 7.65, width = 5.1)
+pdf(paste0('Sim-Res-Rectangle.pdf'), height = 7.65, width = 5.1)
 ylim <- c(0, 100)
 layout(matrix(c(1, 2, 3, 4, 5, 6, 7, 7), nrow = 4, byrow = TRUE), heights = c(1, 1, 1, 0.2))
 par(mar = c(4, 4, 3.5, 2), mgp = c(2.5, 1, 0))
@@ -46,6 +46,34 @@ panel_plot(res_1_same, "High Similarity (Rank = 4)", ylim)
 panel_plot(res_2_same, "High Similarity (Rank = 8)", ylim)
 panel_plot(res_1_dif_moderate, "Moderate Similarity (Rank = 4)", ylim)
 panel_plot(res_2_dif_moderate, "Moderate Similarity (Rank = 8)", ylim)
+panel_plot(res_1_dif_verylow, "Low Similarity (Rank = 4)", ylim)
+panel_plot(res_2_dif_verylow, "Low Similarity (Rank = 8)", ylim)
+
+par(mar = c(0, 0, 0, 0))
+plot.new()
+legend("center", legend = c("Target-Only SVD", "D-LEARNER", "LEARNER"), col = cols, lty = c(1, 2, 6), 
+       pch = 16, bty = "n", horiz = TRUE, cex = 1.2)
+dev.off()
+
+
+################################################################################
+## Independent noise simulations: Square matrix
+################################################################################
+
+load('simres-same-square.RData')
+load('simres-dif-moderate-square.RData')
+load('simres-dif-verylow-square.RData')
+var_ratio <- var_0_all / var_1_all
+
+pdf(paste0('Sim-Res-Square.pdf'), height = 7.65, width = 5.1)
+ylim <- c(0, 55)
+layout(matrix(c(1, 2, 3, 4, 5, 6, 7, 7), nrow = 4, byrow = TRUE), heights = c(1, 1, 1, 0.2))
+par(mar = c(4, 4, 3.5, 2), mgp = c(2.5, 1, 0))
+
+panel_plot(res_1_same_square, "High Similarity (Rank = 4)", ylim)
+panel_plot(res_1_same_square, "High Similarity (Rank = 8)", ylim)
+panel_plot(res_1_dif_moderate_square, "Moderate Similarity (Rank = 4)", ylim)
+panel_plot(res_2_dif_moderate_square, "Moderate Similarity (Rank = 8)", ylim)
 panel_plot(res_1_dif_verylow, "Low Similarity (Rank = 4)", ylim)
 panel_plot(res_2_dif_verylow, "Low Similarity (Rank = 8)", ylim)
 

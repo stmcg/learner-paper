@@ -12,7 +12,7 @@ library('learner')
 
 load('../dat.RData')
 max_iter <- 100
-c <- 0.025
+c <- 0.04
 
 ## Set 1
 theta_hat_0_red <- theta_hat_0
