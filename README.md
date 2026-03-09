@@ -86,7 +86,7 @@ The package version numbers listed above were used in the analyses in the manusc
 
 - `key.RData`: Contains a mapping of the column names of `Y_0` and `Y_1` to phenotype names and ICD-10 codes.  
 - `ScreeNOT.R`: Applies ScreeNOT to `Y_0` and `Y_1`.  
-- `analyze_latent_spaces.R`: Performs analyses of the latent spaces based on the source-only, target-only, LEARNER, and D-LEARNER estimates. The analyses based on the LEARNER and D-LEARNER estimates require running the analyses in the subfolder `apply_learner_dlearner`.
+- `analyze-latent-spaces.R`: Performs analyses of the latent spaces based on the source-only, target-only, LEARNER, and D-LEARNER estimates. The analyses based on the LEARNER and D-LEARNER estimates require running the analyses in the subfolder `apply_learner_dlearner`.
 
 #### Subfolder: `data_processing`
 
@@ -103,8 +103,7 @@ The folder contains the code for the data processing. The source data can be dow
 This folder corresponds to the application of LEARNER and D-LEARNER in Section 4.2 of the manuscript.
 
 - `dlearner.R`: Applies D-LEARNER. Results are saved in `DLEARNER-estimate-BBJ.RData`.  
-- `find-lambda.R`: Selects hyperparameters for LEARNER by cross-validation. Results are saved in `lambda_small.RData`.  
-- `learner.R`: Applies LEARNER with the selected hyperparameters. Results are saved in `learner.RData`.  
+- `learner.R`: Applies LEARNER. Results are saved in `learner.RData`.  
 - `analyze-results.R`: Plots the results of the hyperparameter selection analyses and plots the convergence of LEARNER.  
 
 #### Subfolder: `cross-validation`
