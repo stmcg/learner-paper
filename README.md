@@ -23,20 +23,31 @@ The code requires the following R packages to be installed:
 
 The package version numbers listed above were used in the analyses in the manuscript.
 
+Some simulations use the local **`learnerv2`** package distributed as tarballs in `simulations/`: **`learnerv2_0.2.0.tar.gz`** for incorporating multiple source populations, and **`learnerv2_0.3.0.tar.gz`** for incorporating separate column- and row-space penalties. 
+
 ### File Structure
 
 #### 1. Helper Files
 
 * ``helper.R``: Helper functions for running all simulations
-*  ``helper_ext.R``: Additional helper function for running the simulations with an external dataset for LEARNER
+* ``helper-ext.R``: Additional helper function for running the simulations with an external dataset for LEARNER
+* ``helper-multisource.R``: Helper functions for running simulations with two source populations (used with ``runsim-multisource.R``)
+* ``helper-multisource-high-low.R``: Helper functions for running simulations with two source populations that differ in latent-space similarity to the target (used with ``runsim-multisource-high-low.R``)
+* ``helper-unequal-rank.R``: Helper functions for running simulations where the ranks differ between the source and target populations (used with ``runsim-unequal-rank.R``)
+* ``helper-uhigh-vlow.R``: Helper functions for running simulations where the source and target populations share the same column spaces but differ in their rowspaces (used with ``runsim-uhigh-vlow.R``)
+* ``helper-rect-flex.R``: Helper functions for running simulations with rectangular matrices and applies a version of LEARNER that allows for column and row-space specific penalties (used with ``runsim-rect-flex.R``)
 
 #### 2. Running Simulations
 
 ##### Independent Noise Scenarios
 
+The simulation include scenarios with rectangular (5000x50) matrices and square (500x500) matrices. The files for the rectangular matrices include:
+
 * ``runsim-same.R``: Runs simulation scenarios with high similarity in the latent spaces
 * ``runsim-dif-moderate.R``: Runs simulation scenarios with moderate similarity in the latent spaces
-* ``runsim-dif_verylow.R``: Runs simulation scenarios with low similarity in the latent spaces
+* ``runsim-dif-verylow.R``: Runs simulation scenarios with low similarity in the latent spaces
+
+Files ending with ``-square`` (e.g., ``runsim-same-square.R``, ``runsim-dif-moderate-square.R``, ``runsim-dif-verylow-square.R``) denote the corresponding simulations with square matrices.
 
 ##### Correlated Noise Scenarios
 
@@ -45,6 +56,20 @@ The package version numbers listed above were used in the analyses in the manusc
 ##### Correlated Noise + External Dataset Scenarios
 
 * Files ending with ``-cor-ext`` (e.g., ``runsim-same-cor-ext.R``): Runs simulation scenarios with an external dataset
+
+##### Unequal-Rank Scenarios
+
+* ``runsim-unequal-rank.R``: Runs simulation scenarios where the ranks differ between the source and target populations.
+
+##### Multisource Scenarios
+
+* ``runsim-multisource.R``: Runs simulation scenarios with two source populations that share the same latent structure but unequal noise variance across sources (one source much noisier than the other). Multisource LEARNER and D-LEARNER are implemented in **`learnerv2`** 0.2.x.
+* ``runsim-multisource-high-low.R``: Runs simulation scenarios with two source populations that differ in latent-space similarity to the target, with equal noise across sources.
+
+##### Flexible Penalty Scenarios
+
+* ``runsim-uhigh-vlow.R``: Runs simulation scenarios where the target and source populations share the same column spaces but differ in their row spaces. Applies a version of LEARNER that allows for column and row-space specific penalties, implemented in **`learnerv2`** 0.3.0. 
+* ``runsim-rect-flex.R``: Runs simulation scenarios with rectangular matrices and applies a version of LEARNER that allows for column and row-space specific penalties. 
 
 Note that these files required between 0.5 to 10 hours to run when parallelized across 10 CPU cores.
 
@@ -57,7 +82,7 @@ Note that these files required between 0.5 to 10 hours to run when parallelized 
 
 ## Data Application
 
-The folder `application` contains the code for the simulation study. Below is a description of the contents of this folder.
+The folder `application` contains the code for the data application. Below is a description of the contents of this folder.
 
 ### Prerequisites
 
